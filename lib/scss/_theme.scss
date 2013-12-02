@@ -1,0 +1,33 @@
+/*
+ *input $borderAndHoverColor: 'color of border and hover tab(unselected tab)'
+        $bgColor: 'background of selected tab depends on webpage default background'
+        $fontColor: 'color of text in tab area'
+ *
+ *output mixin of customed tab should import in bootstrap default tab class 'nav-tabs'
+*/
+
+
+@mixin bootstrap-nav-tab-theme($borderAndHoverColor, $bgColor, $fontColor) {    
+    $transparentBorder: rgba(0, 0, 0, 0);
+
+    border-bottom: 1px solid $borderAndHoverColor;    
+    & > li > a{
+        color: $fontColor;
+        &:focus{
+            outline: medium none;
+            background-color: $bgColor;
+            border-bottom: 1px solid $borderAndHoverColor;  
+        }
+        &:hover{
+            background-color: $borderAndHoverColor;
+            border-color: $borderAndHoverColor;
+        }
+    }
+    & > li.active{        
+        & > a, & > a:focus, & > a:hover{        
+            background-color: $bgColor;
+            border-color: $borderAndHoverColor $borderAndHoverColor $transparentBorder;         
+            color: $fontColor;          
+        }    
+    }
+}
